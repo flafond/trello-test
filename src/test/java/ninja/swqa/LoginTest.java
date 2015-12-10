@@ -4,6 +4,7 @@ import ninja.swqa.pages.LoginPage;
 import ninja.swqa.support.Site;
 import ninja.swqa.support.User;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -33,18 +34,18 @@ public class LoginTest {
     @Test
     public void testSuccessfulLogin() {
         loginPage.login(User.VALID_EMAIL, User.VALID_PASSWORD);
-        assert loginPage.IsLoggedIn();
+        Assert.assertTrue(loginPage.IsLoggedIn());
     }
 
     @Test
     public void testBadAccountLogin() {
         loginPage.login(User.INVALID_EMAIL, User.VALID_PASSWORD);
-        assert ! loginPage.IsLoggedIn();
+        Assert.assertFalse(loginPage.IsLoggedIn());
     }
 
     @Test
     public void testBadPasswordLogin() {
         loginPage.login(User.VALID_EMAIL, User.INVALID_PASSWORD);
-        assert ! loginPage.IsLoggedIn();
+        Assert.assertFalse(loginPage.IsLoggedIn());
     }
 }
